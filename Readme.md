@@ -5,6 +5,6 @@ Each player enters its name. The game decides who starts and what symbol each us
 The first to align 3 symbols wins.
 If the table is filled without winner we have a draw.
 
-TO DO :
+Done on V2 :
 - Handle wrong entries from user => None existing case
 - Handle wrong entries from user => Not empty case

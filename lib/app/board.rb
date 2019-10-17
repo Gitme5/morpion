@@ -21,10 +21,26 @@ class Board
 
 	def ask_for_move
 
+		consigne = [] #Enregistrement des saisies des joueurs
+
 		puts "\nChoisissez votre case parmis les cases disponibles"
 		choice = gets.chomp
+		
+		while (consigne.include?(choice))
+			puts "Cette case est déjà prise choisissez en une autre svp"
+			print "> "
+			choice = gets.chomp
+		end
+
+		while (@position.include?(choice) == false)
+			puts "Cette case n'est pas disponible choisissez en une autre svp"
+			print "> "
+			choice = gets.chomp
+		end
+
 		puts "\nVous avez choisi la case #{choice}"
 		index = @position.index(choice)
+		consigne << choice
 
 		return index
 	

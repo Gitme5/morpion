@@ -2,13 +2,14 @@ require_relative 'board_case'
 
 
 class Board
-	attr_accessor :board, :count_turn, :board_values
+	attr_accessor :board, :count_turn, :board_values, :consigne
 	
 	def initialize
 		@position = ["A1","A2","A3","B1","B2","B3","C1","C2","C3"]
 		@board = []
 		@board_values = []
 		@count_turn = 1
+		@consigne = []
 		
 		9.times do |index|
 			@board << BoardCase.new(@position[index]," ")
@@ -21,26 +22,30 @@ class Board
 
 	def ask_for_move
 
-		consigne = [] #Enregistrement des saisies des joueurs
+		 #Enregistrement des saisies des joueurs
 
 		puts "\nChoisissez votre case parmis les cases disponibles"
 		choice = gets.chomp
-		
-		while (consigne.include?(choice))
-			puts "Cette case est déjà prise choisissez en une autre svp"
-			print "> "
-			choice = gets.chomp
-		end
 
+		
 		while (@position.include?(choice) == false)
 			puts "Cette case n'est pas disponible choisissez en une autre svp"
 			print "> "
 			choice = gets.chomp
 		end
 
+		while (consigne.include?(choice) == true)
+			puts "Cette case est déjà prise choisissez en une autre svp"
+			print "> "
+			choice = gets.chomp
+		end
+
+		consigne << choice
+		binding.pry
+
 		puts "\nVous avez choisi la case #{choice}"
 		index = @position.index(choice)
-		consigne << choice
+		
 
 		return index
 	
